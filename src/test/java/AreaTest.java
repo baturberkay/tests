@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.*;
+import shapes.Circle;
+import shapes.Triangle;
 
 public class AreaTest {
 
@@ -32,7 +34,7 @@ public class AreaTest {
     @Test
     @DisplayName("failed Test")
     public void testCalculateCircleAreaFail() {
-//        Assertions.fail("circle tests failed");
+        Assertions.fail("circle tests failed");
     }
 
     @Test //It will print the method's name as name.
@@ -41,4 +43,19 @@ public class AreaTest {
         Assertions.assertEquals(triangle.calculateArea(), (1.5 * 3.5) / 2);
     }
 
+    // Grouped tests execute together. If any of them fails, the whole test fails.
+    @Test
+    public void groupedAssertions() {
+        double radius = 1.5;
+        Circle circle = new Circle(radius);
+        Assertions.assertAll("circle",
+                () -> Assertions.assertEquals(Math.PI * radius, circle.calculateCircumference()),
+                () -> Assertions.assertEquals(Math.PI * radius, circle.calculateArea()));
+    }
+
+    @Test // Expected exceptions can be tested using assertThrows
+    public void exceptionTesting() {
+        Assertions.assertThrows(ArithmeticException.class,
+                () -> { int i = 1 / 0;});
+    }
 }

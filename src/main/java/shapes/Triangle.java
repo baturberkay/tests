@@ -1,3 +1,5 @@
+package shapes;
+
 public class Triangle {
 
     private final double base;
@@ -8,7 +10,7 @@ public class Triangle {
         this.height = height;
     }
 
-    double calculateArea() {
+    public double calculateArea() {
         return (base * height) / 2;
     }
 
